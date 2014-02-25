@@ -1,9 +1,9 @@
 module.exports = (grunt) ->
-	grunt.loadNpmTasks('grunt-contrib-coffee')
-	grunt.loadNpmTasks('grunt-contrib-less')
-	grunt.loadNpmTasks('grunt-contrib-jade')
-	grunt.loadNpmTasks('grunt-contrib-clean')
-	grunt.loadNpmTasks('grunt-contrib-watch')
+	grunt.loadNpmTasks "grunt-karma"
+	grunt.loadNpmTasks "grunt-contrib-coffee"
+	grunt.loadNpmTasks "grunt-contrib-clean"
+	grunt.loadNpmTasks "grunt-contrib-jade"
+	grunt.loadNpmTasks "grunt-contrib-less"
 
 	grunt.initConfig
 		pkg: grunt.file.readJSON('package.json'),
@@ -39,6 +39,15 @@ module.exports = (grunt) ->
 				files: ['assets/**/*']
 				tasks: ['default']
 
+		karma:
+			unit:
+				configFile: "./test/karma-unit.conf.js"
+				autoWatch: false
+				singleRun: true
+
 	grunt.registerTask 'default', ['clean','coffee:dev','jade:dev','less:dev']
 	grunt.registerTask 'watch', ['clean','coffee:dev','jade:dev','less:dev','watch:assets']
 	grunt.registerTask 'w', ['watch']
+	grunt.registerTask "test:unit", [
+		"karma:unit"
+	]
