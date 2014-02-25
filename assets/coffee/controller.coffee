@@ -1,4 +1,4 @@
 app = angular.module 'app'
 
-app.controller 'ctrl', ($scope) ->
-	$scope.value = "tout est ok"
+app.controller 'MainCtrl', ($scope, $window) ->
+	$window.document.createElement('div-')
