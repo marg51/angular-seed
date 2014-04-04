@@ -4,6 +4,7 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks "grunt-contrib-clean"
 	grunt.loadNpmTasks "grunt-contrib-jade"
 	grunt.loadNpmTasks "grunt-contrib-less"
+	grunt.loadNpmTasks "grunt-contrib-concat"
 
 	grunt.initConfig
 		pkg: grunt.file.readJSON('package.json'),
@@ -35,16 +36,17 @@ module.exports = (grunt) ->
 		clean: ['public']
 
 		concat:
-			options:
-				separator: ";"
+			prod:
+				options:
+					separator: ";"
 
-			dest: "./public/deps.js"
-			src: [
-				"bower_components/angular/angular.min.js"
-				"bower_components/angular-animate/angular-animate.min.js"
-				"bower_components/angular-ui-router/release/angular-ui-router.min.js"
-				"bower_components/lodash/dist/lodash.min.js"
-			]
+				dest: "public/deps.js"
+				src: [
+					"bower_components/angular/angular.js"
+					"bower_components/angular-animate/angular-animate.min.js"
+					"bower_components/angular-ui-router/release/angular-ui-router.min.js"
+					"bower_components/lodash/dist/lodash.min.js"
+				]
 
 		watch: 
 			assets:
@@ -57,7 +59,7 @@ module.exports = (grunt) ->
 				autoWatch: false
 				singleRun: true
 
-	grunt.registerTask 'default', ['clean','concat','coffee:dev','jade:dev','less:dev']
+	grunt.registerTask 'default', ['clean','concat:prod','coffee:dev','jade:dev','less:dev']
 	grunt.registerTask 'watch', ['clean','coffee:dev','jade:dev','less:dev','watch:assets']
 	grunt.registerTask 'w', ['watch']
 	grunt.registerTask "test:unit", [
