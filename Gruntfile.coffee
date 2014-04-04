@@ -34,6 +34,18 @@ module.exports = (grunt) ->
 					'./public/app.css': ['assets/less/*.less']
 		clean: ['public']
 
+		concat:
+			options:
+				separator: ";"
+
+			dest: "./public/deps.js"
+			src: [
+				"bower_components/angular/angular.min.js"
+				"bower_components/angular-animate/angular-animate.min.js"
+				"bower_components/angular-ui-router/release/angular-ui-router.min.js"
+				"bower_components/lodash/dist/lodash.min.js"
+			]
+
 		watch: 
 			assets:
 				files: ['assets/**/*']
@@ -45,7 +57,7 @@ module.exports = (grunt) ->
 				autoWatch: false
 				singleRun: true
 
-	grunt.registerTask 'default', ['clean','coffee:dev','jade:dev','less:dev']
+	grunt.registerTask 'default', ['clean','concat','coffee:dev','jade:dev','less:dev']
 	grunt.registerTask 'watch', ['clean','coffee:dev','jade:dev','less:dev','watch:assets']
 	grunt.registerTask 'w', ['watch']
 	grunt.registerTask "test:unit", [
