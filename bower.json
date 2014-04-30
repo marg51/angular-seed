@@ -9,7 +9,10 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components"
+    "bower_components",
+    "assets",
+    "Gruntfile.coffee",
+    "data.json"
   ],
   "dependencies": {
     "angular-mocks": "~1.2.16",
