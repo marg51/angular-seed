@@ -1,6 +1,6 @@
 app = angular.module 'app',[
 	# 'ui.router'
-])
+]
 
 # app.config ($stateProvider, $urlRouterProvider) ->
 # 	$stateProvider.state("home",
