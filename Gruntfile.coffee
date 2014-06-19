@@ -6,7 +6,7 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks "grunt-contrib-less"
 	grunt.loadNpmTasks "grunt-contrib-concat"
 	grunt.loadNpmTasks "grunt-contrib-uglify"
-	grunt.loadNpmTasks "grunt-ngmin"
+	grunt.loadNpmTasks "grunt-ng-annotate"
 	grunt.loadNpmTasks "grunt-html2js"
 
 	grunt.initConfig
@@ -86,7 +86,7 @@ module.exports = (grunt) ->
 				src: ["public/*.html"]
 				dest: "public/templates.js"
 
-		ngmin:
+		ngAnnotate:
 			prod:
 				src: ["public/app.js"]
 				dest: "public/app.js"
@@ -103,7 +103,7 @@ module.exports = (grunt) ->
 				singleRun: true
 
 	grunt.registerTask 'default', ['clean','concat:prod','coffee:dev','jade:dev','less:dev','html2js:prod',]
-	grunt.registerTask 'prod', ['clean','concat:prod','coffee:prod','jade:prod','less:prod','html2js:prod','ngmin:prod']
+	grunt.registerTask 'prod', ['clean','concat:prod','coffee:prod','jade:prod','less:prod','html2js:prod','ngAnnotate:prod']
 	
 	grunt.registerTask 'watch', ['default','watch:assets']
 	grunt.registerTask 'w', ['watch']
