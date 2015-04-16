@@ -19,10 +19,14 @@ gulp.task('default', ['js','deps','templates','css']);
 
 gulp.task('templates', function () {
     gulp.src(htmlFiles)
-    	// .pipe(jade())
+        .pipe(jade())
         .pipe(templateCache({root:'app/', standalone: true}))
         .pipe(concat('templates.js'))
         .pipe( gulp.dest( 'public' ) );
+
+    gulp.src(["assets/jade/index.jade"])
+        .pipe(jade())
+        .pipe( gulp.dest('public') );
 });
 
 gulp.task('js', function() {
